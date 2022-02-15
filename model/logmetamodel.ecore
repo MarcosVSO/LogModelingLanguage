@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="logmetamodel" nsURI="logmetamodel" nsPrefix="logmetamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainSchema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlschema" eType="#//ControlSchema"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataschema" eType="#//DataSchema"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlSchema">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="csID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conjuntocoletas" eType="#//ConjuntoColetas"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSchema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restricao" upperBound="-1"
+        eType="#//Restricao" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="csID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conjuntorotas" eType="#//ConjuntoRotas"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Restricao">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restricaoId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descricao" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="peso" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valorMaximo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Coleta">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coletaId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordernada" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="utilidade" upperBound="-1"
+        eType="#//Utilidade" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conjuntocusto" upperBound="-1"
+        eType="#//ConjuntoCusto" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConjuntoColetas">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coleta" upperBound="-1"
+        eType="#//Coleta" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conjuntoColetasID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Utilidade">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coletaId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotaId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConjuntoRotas">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conjuntoRotasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rota" upperBound="-1" eType="#//Rota"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rota">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotaId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordenadas" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConjuntoCusto">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConjuntoCustoId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restricaoId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="custosRotas" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+</ecore:EPackage>

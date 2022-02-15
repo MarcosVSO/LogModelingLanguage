@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/logmodelinglanguage2/src" modelPluginID="logmodelinglanguage2"
+    modelName="Logmetamodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>logmetamodel.ecore</foreignModel>
+  <genPackages prefix="Logmetamodel" disposableProviderFactory="true" ecorePackage="logmetamodel.ecore#/">
+    <genClasses ecoreClass="logmetamodel.ecore#//DomainSchema">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//DomainSchema/controlschema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//DomainSchema/dataschema"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//ControlSchema">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ControlSchema/csID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//ControlSchema/conjuntocoletas"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//DataSchema">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//DataSchema/restricao"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//DataSchema/dsID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//DataSchema/csID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//DataSchema/conjuntorotas"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//Restricao">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Restricao/restricaoId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Restricao/descricao"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Restricao/peso"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Restricao/valorMaximo"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//Coleta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Coleta/coletaId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Coleta/coordernada"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//Coleta/utilidade"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//Coleta/conjuntocusto"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//ConjuntoColetas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//ConjuntoColetas/coleta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ConjuntoColetas/conjuntoColetasID"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//Utilidade">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Utilidade/coletaId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Utilidade/rotaId"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//ConjuntoRotas">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ConjuntoRotas/conjuntoRotasId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logmetamodel.ecore#//ConjuntoRotas/rota"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//Rota">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Rota/rotaId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Rota/coordenadas"/>
+    </genClasses>
+    <genClasses ecoreClass="logmetamodel.ecore#//ConjuntoCusto">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ConjuntoCusto/ConjuntoCustoId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ConjuntoCusto/restricaoId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ConjuntoCusto/custosRotas"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
