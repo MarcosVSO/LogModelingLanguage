@@ -2,15 +2,18 @@
  */
 package logmetamodel.impl;
 
+import java.net.http.HttpClient;
 import java.util.Collection;
+import java.util.Random;
 
 import logmetamodel.Coleta;
 import logmetamodel.ConjuntoColetas;
+import logmetamodel.LogmetamodelFactory;
 import logmetamodel.LogmetamodelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -21,6 +24,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.google.gson.Gson;
 
 /**
  * <!-- begin-user-doc -->
@@ -218,5 +223,31 @@ public class ConjuntoColetasImpl extends MinimalEObjectImpl.Container implements
 		result.append(')');
 		return result.toString();
 	}
-
+	
+	@Override
+	public void createConjuntoColetas(Integer qtdColetas) {
+		EList<Coleta> coletasGeradas = new BasicEList<Coleta>();
+		
+		float maxLat = (float) -16.6296;
+		float minLat = (float) -16.7638;
+		float maxLong = (float) -49.2194;
+		float minLong = (float) -49.3334;
+		
+		Random rand = new Random();
+		
+		for (int i = 0; i < qtdColetas; i++) {
+			String coordinate = "";
+			coordinate += Math.random()*(maxLong - minLong) + minLong;
+			coordinate += ",";
+			coordinate += Math.random()*(maxLat - minLat) + minLat;
+						
+			Coleta coletaGerada = LogmetamodelFactory.eINSTANCE.createColeta();
+			coletaGerada.setColetaId(i);
+			coletaGerada.setCoordernada(coordinate);
+			
+			coletasGeradas.add(coletaGerada);
+		}
+		
+		this.coleta = coletasGeradas;
+	}
 } //ConjuntoColetasImpl

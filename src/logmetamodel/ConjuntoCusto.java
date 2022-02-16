@@ -80,5 +80,7 @@ public interface ConjuntoCusto extends EObject {
 	 * @generated
 	 */
 	EList<Float> getCustosRotas();
-
+	
+	void setCustosRotas(EList<Float> custos);
+	
 } // ConjuntoCusto

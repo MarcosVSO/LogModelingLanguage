@@ -2,16 +2,25 @@
  */
 package logmetamodel.impl;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Collection;
 
 import logmetamodel.Coleta;
 import logmetamodel.ConjuntoCusto;
+import logmetamodel.LogmetamodelFactory;
 import logmetamodel.LogmetamodelPackage;
+import logmetamodel.Restricao;
+import logmetamodel.Rota;
 import logmetamodel.Utilidade;
+import logmetamodel.application.Route;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +31,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.google.gson.Gson;
 
 /**
  * <!-- begin-user-doc -->
@@ -309,4 +320,74 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 		result.append(')');
 		return result.toString();
 	}
-} //ColetaImpl
+	
+	public void setConjuntoCusto(EList<Rota> rotas, EList<Restricao> restricoes) throws IOException, InterruptedException {
+		EList<ConjuntoCusto> listaConjuntoCusto = new BasicEList<ConjuntoCusto>();
+		for(Restricao r : restricoes) {
+			ConjuntoCusto conjuntoCustosCalculados = calculateConjuntoCusto(rotas,r);
+			listaConjuntoCusto.add(conjuntoCustosCalculados);
+		}
+		this.conjuntocusto = listaConjuntoCusto;
+	}
+	
+	public ConjuntoCusto calculateConjuntoCusto(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException {
+		ConjuntoCusto custoRotas = LogmetamodelFactory.eINSTANCE.createConjuntoCusto();
+		custoRotas.setRestricaoId(restricao.getRestricaoId());
+		EList<Float> custosCalculados = new BasicEList<Float>();
+		switch (restricao.getRestricaoId()) {
+			case 0:
+				custosCalculados = calculateCustoDistancia(rotas,restricao);
+			break;
+			case 1:
+				custosCalculados = calculateCustoTempo(rotas,restricao);
+				break;
+			case 2:
+				custosCalculados = calculateCustoDesvio(rotas, restricao);
+				break;
+		}
+		
+		custoRotas.setCustosRotas(custosCalculados);
+		return custoRotas;	
+	}
+	
+	public EList<Float> calculateCustoDistancia(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException{
+		EList<Float> custoDistanciaRotas = new BasicEList<Float>();
+		
+		float minDistance = 1000000;
+		Gson gson = new Gson();
+		var client = HttpClient.newHttpClient();
+		
+		for (Rota r : rotas) {
+			for (String coord : r.getCoordenadas()) {
+				//System.out.println(coord[0]+" , "+coord[1]);
+				
+				HttpRequest request = HttpRequest.newBuilder()
+				          .uri(URI.create("http://0.0.0.0:5000/route/v1/driving/"+coord+";"+this.getCoordernada()+"?geometries=geojson"))
+				          .header("Accept", "application/json")
+				          .build();
+				
+				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+				
+				Route rotaAux = gson.fromJson(response.body(),Route.class);
+				//System.out.println(rotaAux.getRoutesDistance());
+				if (Float.parseFloat(rotaAux.getRoutesDistance()) < minDistance) {
+					minDistance = Float.parseFloat(rotaAux.getRoutesDistance());
+				}
+			}
+			custoDistanciaRotas.add(minDistance);
+			minDistance = 1000000;
+		}
+		
+		return custoDistanciaRotas;
+	}
+	
+	public EList<Float> calculateCustoTempo(EList<Rota> rotas, Restricao restricao){
+		EList<Float> custoTempoRotas = new BasicEList<Float>();
+		return custoTempoRotas;
+	} 
+	
+	public EList<Float> calculateCustoDesvio(EList<Rota> rotas, Restricao restricao){
+		EList<Float> custoDesvioRotas = new BasicEList<Float>();
+		return custoDesvioRotas;
+	} 
+}  

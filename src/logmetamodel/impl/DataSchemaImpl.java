@@ -339,5 +339,10 @@ public class DataSchemaImpl extends MinimalEObjectImpl.Container implements Data
 		result.append(')');
 		return result.toString();
 	}
+	
+	@Override
+	public void setRestricoes(EList<Restricao> listaRestricao) {
+		this.restricao = listaRestricao;
+	}
 
 } //DataSchemaImpl

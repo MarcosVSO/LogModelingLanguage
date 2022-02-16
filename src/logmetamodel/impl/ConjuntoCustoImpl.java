@@ -256,5 +256,10 @@ public class ConjuntoCustoImpl extends MinimalEObjectImpl.Container implements C
 		result.append(')');
 		return result.toString();
 	}
+	
+	@Override
+	public void setCustosRotas(EList<Float> custos) {
+		this.custosRotas = custos;
+	}
 
 } //ConjuntoCustoImpl

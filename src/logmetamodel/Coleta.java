@@ -2,6 +2,8 @@
  */
 package logmetamodel;
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -93,5 +95,7 @@ public interface Coleta extends EObject {
 	 * @generated
 	 */
 	EList<ConjuntoCusto> getConjuntocusto();
+	
+	void setConjuntoCusto(EList<Rota> rotas, EList<Restricao> restricoes) throws IOException, InterruptedException;
 
 } // Coleta

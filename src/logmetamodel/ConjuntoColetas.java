@@ -57,5 +57,7 @@ public interface ConjuntoColetas extends EObject {
 	 * @generated
 	 */
 	void setConjuntoColetasID(int value);
+	
+	void createConjuntoColetas(Integer qtdColetas);
 
 } // ConjuntoColetas

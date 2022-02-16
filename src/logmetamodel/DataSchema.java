@@ -103,5 +103,7 @@ public interface DataSchema extends EObject {
 	 * @generated
 	 */
 	void setConjuntorotas(ConjuntoRotas value);
+	
+	void setRestricoes(EList<Restricao> listaRestricao);
 
 } // DataSchema
