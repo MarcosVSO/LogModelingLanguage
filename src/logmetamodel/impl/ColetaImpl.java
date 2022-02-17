@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 import java.util.Collection;
 
 import logmetamodel.Coleta;
@@ -333,6 +334,7 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 	public ConjuntoCusto calculateConjuntoCusto(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException {
 		ConjuntoCusto custoRotas = LogmetamodelFactory.eINSTANCE.createConjuntoCusto();
 		custoRotas.setRestricaoId(restricao.getRestricaoId());
+		custoRotas.setConjuntoCustoId(this.getColetaId());
 		EList<Float> custosCalculados = new BasicEList<Float>();
 		switch (restricao.getRestricaoId()) {
 			case 0:
@@ -359,7 +361,6 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 		
 		for (Rota r : rotas) {
 			for (String coord : r.getCoordenadas()) {
-				//System.out.println(coord[0]+" , "+coord[1]);
 				
 				HttpRequest request = HttpRequest.newBuilder()
 				          .uri(URI.create("http://0.0.0.0:5000/route/v1/driving/"+coord+";"+this.getCoordernada()+"?geometries=geojson"))
@@ -381,13 +382,66 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 		return custoDistanciaRotas;
 	}
 	
-	public EList<Float> calculateCustoTempo(EList<Rota> rotas, Restricao restricao){
+	public EList<Float> calculateCustoTempo(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException{
 		EList<Float> custoTempoRotas = new BasicEList<Float>();
+		float minDuration = 1000000;
+		
+		Gson gson = new Gson();
+		var client = HttpClient.newHttpClient();
+
+		for (Rota r : rotas) {
+			for (String coord : r.getCoordenadas()) {
+				
+						HttpRequest request = HttpRequest.newBuilder()
+				          .uri(URI.create("http://0.0.0.0:5000/route/v1/driving/"+coord+";"+this.getCoordernada()+"?geometries=geojson"))
+				          .header("Accept", "application/json")
+				          .build();
+						
+				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+				Route rotaAux = gson.fromJson(response.body(),Route.class);
+				//System.out.println(rotaAux.getRoutesDistance());
+				if (Float.parseFloat(rotaAux.getRoutesDuration()) < minDuration) {
+					minDuration = Float.parseFloat(rotaAux.getRoutesDuration());
+				}
+			}
+			custoTempoRotas.add(minDuration);
+			minDuration = 1000000;
+		}
 		return custoTempoRotas;
 	} 
 	
-	public EList<Float> calculateCustoDesvio(EList<Rota> rotas, Restricao restricao){
+	public EList<Float> calculateCustoDesvio(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException{
 		EList<Float> custoDesvioRotas = new BasicEList<Float>();
+		Gson gson = new Gson();
+		var client = HttpClient.newHttpClient();
+		
+		for (Rota r : rotas) {
+			EList<String> entrega = r.getCoordenadas();
+			Float[] desvios = new Float[entrega.size() - 1];
+			
+			for (int i = 0; i < entrega.size() - 1; i++) {
+				//System.out.println(ent);
+				
+				HttpRequest request1 = HttpRequest.newBuilder()
+						.uri(URI.create("http://0.0.0.0:5000/route/v1/driving/"+entrega.get(i)+";"+this.getCoordernada()+"?geometries=geojson"))
+						.header("Accept", "application/json")
+						.build();
+				HttpResponse<String> response1 = client.send(request1, HttpResponse.BodyHandlers.ofString());
+				Route rotaAux1 = gson.fromJson(response1.body(), Route.class);
+				
+				HttpRequest request2 = HttpRequest.newBuilder()
+						.uri(URI.create("http://0.0.0.0:5000/route/v1/driving/"+this.getCoordernada()+";"+entrega.get(i+1)+"?geometries=geojson"))
+						.header("Accept", "application/json")
+						.build();
+				HttpResponse<String> response2 = client.send(request2, HttpResponse.BodyHandlers.ofString());
+				Route rotaAux2 = gson.fromJson(response1.body(), Route.class);
+				
+				float somaDistanciais = Float.parseFloat(rotaAux1.getRoutesDistance()) + Float.parseFloat(rotaAux2.getRoutesDistance());
+				desvios[i] = somaDistanciais;
+			}
+			Arrays.sort(desvios);
+			custoDesvioRotas.add(desvios[desvios.length -1]);
+		}
 		return custoDesvioRotas;
 	} 
 }  
