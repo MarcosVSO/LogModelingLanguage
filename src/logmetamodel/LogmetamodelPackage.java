@@ -415,13 +415,22 @@ public interface LogmetamodelPackage extends EPackage {
 	int UTILIDADE__ROTA_ID = 1;
 
 	/**
+	 * The feature id for the '<em><b>Utilidade</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UTILIDADE__UTILIDADE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Utilidade</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UTILIDADE_FEATURE_COUNT = 2;
+	int UTILIDADE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Utilidade</em>' class.
@@ -871,6 +880,17 @@ public interface LogmetamodelPackage extends EPackage {
 	EAttribute getUtilidade_RotaId();
 
 	/**
+	 * Returns the meta object for the attribute '{@link logmetamodel.Utilidade#getUtilidade <em>Utilidade</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Utilidade</em>'.
+	 * @see logmetamodel.Utilidade#getUtilidade()
+	 * @see #getUtilidade()
+	 * @generated
+	 */
+	EAttribute getUtilidade_Utilidade();
+
+	/**
 	 * Returns the meta object for class '{@link logmetamodel.ConjuntoRotas <em>Conjunto Rotas</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1229,6 +1249,14 @@ public interface LogmetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute UTILIDADE__ROTA_ID = eINSTANCE.getUtilidade_RotaId();
+
+		/**
+		 * The meta object literal for the '<em><b>Utilidade</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UTILIDADE__UTILIDADE = eINSTANCE.getUtilidade_Utilidade();
 
 		/**
 		 * The meta object literal for the '{@link logmetamodel.impl.ConjuntoRotasImpl <em>Conjunto Rotas</em>}' class.

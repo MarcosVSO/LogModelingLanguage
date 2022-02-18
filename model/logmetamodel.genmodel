@@ -39,6 +39,7 @@
     <genClasses ecoreClass="logmetamodel.ecore#//Utilidade">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Utilidade/coletaId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Utilidade/rotaId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//Utilidade/utilidade"/>
     </genClasses>
     <genClasses ecoreClass="logmetamodel.ecore#//ConjuntoRotas">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logmetamodel.ecore#//ConjuntoRotas/conjuntoRotasId"/>

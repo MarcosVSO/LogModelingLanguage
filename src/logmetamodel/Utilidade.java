@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link logmetamodel.Utilidade#getColetaId <em>Coleta Id</em>}</li>
  *   <li>{@link logmetamodel.Utilidade#getRotaId <em>Rota Id</em>}</li>
+ *   <li>{@link logmetamodel.Utilidade#getUtilidade <em>Utilidade</em>}</li>
  * </ul>
  *
  * @see logmetamodel.LogmetamodelPackage#getUtilidade()
@@ -65,5 +66,27 @@ public interface Utilidade extends EObject {
 	 * @generated
 	 */
 	void setRotaId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Utilidade</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Utilidade</em>' attribute.
+	 * @see #setUtilidade(float)
+	 * @see logmetamodel.LogmetamodelPackage#getUtilidade_Utilidade()
+	 * @model
+	 * @generated
+	 */
+	float getUtilidade();
+
+	/**
+	 * Sets the value of the '{@link logmetamodel.Utilidade#getUtilidade <em>Utilidade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Utilidade</em>' attribute.
+	 * @see #getUtilidade()
+	 * @generated
+	 */
+	void setUtilidade(float value);
 
 } // Utilidade

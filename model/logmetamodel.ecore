@@ -42,6 +42,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Utilidade">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="coletaId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotaId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="utilidade" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConjuntoRotas">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conjuntoRotasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

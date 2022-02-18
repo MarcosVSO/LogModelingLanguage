@@ -445,5 +445,33 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 			custoDesvioRotas.add(desvios[desvios.length -1]);
 		}
 		return custoDesvioRotas;
-	} 
+	}
+	
+	@Override
+	public void calculateUtilidade(EList<Restricao> restricoes) {
+		EList<Utilidade> utilidades = new BasicEList<Utilidade>();
+		EList<Float> utilidadesCalculadas = new BasicEList<Float>();
+		
+		int i = 0;
+		for (ConjuntoCusto custos : this.conjuntocusto) {
+			utilidadesCalculadas.add((float)0);
+			for (Float c : custos.getCustosRotas()) {
+				System.out.println(c*restricoes.get(i).getPeso());
+				utilidadesCalculadas.set(i,utilidadesCalculadas.get(i)+c*restricoes.get(i).getPeso());
+			}
+			i++;
+		}
+		
+		i = 0;
+		for (Float utilidadeCalculada : utilidadesCalculadas) {
+			Utilidade auxUtil = LogmetamodelFactory.eINSTANCE.createUtilidade();
+			auxUtil.setColetaId(this.coletaId);
+			auxUtil.setRotaId(i);
+			auxUtil.setUtilidade(utilidadeCalculada);
+			utilidades.add(auxUtil);
+			i++;
+		}
+		
+		this.utilidade = utilidades;
+	}
 }  

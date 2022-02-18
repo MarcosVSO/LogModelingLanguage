@@ -4,7 +4,7 @@
     <semanticResources>logmetamodel.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_Pj8SQIWtEeyXidlb4PSpYg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_j6FsAIWtEeyXidlb4PSpYg" name="logmetamodel class diagram" repPath="#_j5SawIWtEeyXidlb4PSpYg" changeId="d46188c6-32c7-4111-bc98-816afb815682">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_j6FsAIWtEeyXidlb4PSpYg" name="logmetamodel class diagram" repPath="#_j5SawIWtEeyXidlb4PSpYg" changeId="5f9d081d-a27f-49fd-897a-3b49d54b8c0d">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="logmetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -126,6 +126,10 @@
             <children xmi:type="notation:Node" xmi:id="_efnlUI3aEeyjDvqQv5rYGQ" type="3010" element="_efb_II3aEeyjDvqQv5rYGQ">
               <styles xmi:type="notation:FontStyle" xmi:id="_efnlUY3aEeyjDvqQv5rYGQ" fontColor="2697711" fontName="Ubuntu" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_efnlUo3aEeyjDvqQv5rYGQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_NLb5AJBREeyQBci2iaCAIw" type="3010" element="_NK5tgJBREeyQBci2iaCAIw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_NLb5AZBREeyQBci2iaCAIw" fontColor="2697711" fontName="Ubuntu" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_NLb5ApBREeyQBci2iaCAIw"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_doPG0o3ZEeyjDvqQv5rYGQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_doPG043ZEeyjDvqQv5rYGQ"/>
@@ -541,7 +545,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_jHhklo3aEeyjDvqQv5rYGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_TIH54ZBREeyQBci2iaCAIw" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -557,6 +561,14 @@
         <target xmi:type="ecore:EAttribute" href="logmetamodel.ecore#//Utilidade/rotaId"/>
         <semanticElements xmi:type="ecore:EAttribute" href="logmetamodel.ecore#//Utilidade/rotaId"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_jHkA0o3aEeyjDvqQv5rYGQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_NK5tgJBREeyQBci2iaCAIw" name="utilidade : EFloat = 0.0" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="logmetamodel.ecore#//Utilidade/utilidade"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="logmetamodel.ecore#//Utilidade/utilidade"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_TIMLU5BREeyQBci2iaCAIw" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>

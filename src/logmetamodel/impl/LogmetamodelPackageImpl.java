@@ -408,6 +408,15 @@ public class LogmetamodelPackageImpl extends EPackageImpl implements Logmetamode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUtilidade_Utilidade() {
+		return (EAttribute)utilidadeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConjuntoRotas() {
 		return conjuntoRotasEClass;
 	}
@@ -554,6 +563,7 @@ public class LogmetamodelPackageImpl extends EPackageImpl implements Logmetamode
 		utilidadeEClass = createEClass(UTILIDADE);
 		createEAttribute(utilidadeEClass, UTILIDADE__COLETA_ID);
 		createEAttribute(utilidadeEClass, UTILIDADE__ROTA_ID);
+		createEAttribute(utilidadeEClass, UTILIDADE__UTILIDADE);
 
 		conjuntoRotasEClass = createEClass(CONJUNTO_ROTAS);
 		createEAttribute(conjuntoRotasEClass, CONJUNTO_ROTAS__CONJUNTO_ROTAS_ID);
@@ -632,6 +642,7 @@ public class LogmetamodelPackageImpl extends EPackageImpl implements Logmetamode
 		initEClass(utilidadeEClass, Utilidade.class, "Utilidade", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUtilidade_ColetaId(), ecorePackage.getEInt(), "coletaId", null, 0, 1, Utilidade.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUtilidade_RotaId(), ecorePackage.getEInt(), "rotaId", null, 0, 1, Utilidade.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUtilidade_Utilidade(), ecorePackage.getEFloat(), "utilidade", null, 0, 1, Utilidade.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conjuntoRotasEClass, ConjuntoRotas.class, "ConjuntoRotas", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConjuntoRotas_ConjuntoRotasId(), ecorePackage.getEInt(), "conjuntoRotasId", null, 0, 1, ConjuntoRotas.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

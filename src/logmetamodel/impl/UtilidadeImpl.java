@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link logmetamodel.impl.UtilidadeImpl#getColetaId <em>Coleta Id</em>}</li>
  *   <li>{@link logmetamodel.impl.UtilidadeImpl#getRotaId <em>Rota Id</em>}</li>
+ *   <li>{@link logmetamodel.impl.UtilidadeImpl#getUtilidade <em>Utilidade</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +67,26 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 	 * @ordered
 	 */
 	protected int rotaId = ROTA_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUtilidade() <em>Utilidade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUtilidade()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float UTILIDADE_EDEFAULT = 0.0F;
+
+	/**
+	 * The cached value of the '{@link #getUtilidade() <em>Utilidade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUtilidade()
+	 * @generated
+	 * @ordered
+	 */
+	protected float utilidade = UTILIDADE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +154,27 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public float getUtilidade() {
+		return utilidade;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUtilidade(float newUtilidade) {
+		float oldUtilidade = utilidade;
+		utilidade = newUtilidade;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogmetamodelPackage.UTILIDADE__UTILIDADE, oldUtilidade, utilidade));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +182,8 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 				return getColetaId();
 			case LogmetamodelPackage.UTILIDADE__ROTA_ID:
 				return getRotaId();
+			case LogmetamodelPackage.UTILIDADE__UTILIDADE:
+				return getUtilidade();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,6 +201,9 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 				return;
 			case LogmetamodelPackage.UTILIDADE__ROTA_ID:
 				setRotaId((Integer)newValue);
+				return;
+			case LogmetamodelPackage.UTILIDADE__UTILIDADE:
+				setUtilidade((Float)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +223,9 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 			case LogmetamodelPackage.UTILIDADE__ROTA_ID:
 				setRotaId(ROTA_ID_EDEFAULT);
 				return;
+			case LogmetamodelPackage.UTILIDADE__UTILIDADE:
+				setUtilidade(UTILIDADE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +242,8 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 				return coletaId != COLETA_ID_EDEFAULT;
 			case LogmetamodelPackage.UTILIDADE__ROTA_ID:
 				return rotaId != ROTA_ID_EDEFAULT;
+			case LogmetamodelPackage.UTILIDADE__UTILIDADE:
+				return utilidade != UTILIDADE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,6 +262,8 @@ public class UtilidadeImpl extends MinimalEObjectImpl.Container implements Utili
 		result.append(coletaId);
 		result.append(", rotaId: ");
 		result.append(rotaId);
+		result.append(", utilidade: ");
+		result.append(utilidade);
 		result.append(')');
 		return result.toString();
 	}

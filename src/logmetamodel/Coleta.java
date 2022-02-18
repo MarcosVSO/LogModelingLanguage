@@ -97,5 +97,7 @@ public interface Coleta extends EObject {
 	EList<ConjuntoCusto> getConjuntocusto();
 	
 	void setConjuntoCusto(EList<Rota> rotas, EList<Restricao> restricoes) throws IOException, InterruptedException;
-
+	
+	public void calculateUtilidade(EList<Restricao> restricoes);
+	
 } // Coleta
