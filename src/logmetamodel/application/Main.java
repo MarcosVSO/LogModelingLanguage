@@ -49,7 +49,7 @@ public class Main {
 		dataSchema.setConjuntorotas(rotas);
 		controlSchema.setConjuntocoletas(conjuntoColetas);
 		
-		rotas.generateRoutes(2,2);
+		rotas.generateRoutes(3,2);
 		conjuntoColetas.createConjuntoColetas(2);
 		
 		for(Coleta c : conjuntoColetas.getColeta()) {
@@ -57,11 +57,13 @@ public class Main {
 					domainSchema.getDataschema().getRestricao());
 		}
 		
-		System.out.println(domainSchema.getDataschema().getConjuntorotas().getRota());
-		System.out.println(dataSchema.getRestricao());
-		System.out.println(conjuntoColetas.getColeta().toString());
+		System.out.println("----Rotas----\n"+domainSchema.getDataschema().getConjuntorotas().getRota()+"\n");
+		System.out.println("----Restrições----\n"+dataSchema.getRestricao()+"\n");
+		System.out.println("----Coletas----\n"+conjuntoColetas.getColeta().toString()+"\n");
 		
+		System.out.println("----Custos das Coletas------");
 		for (Coleta c : conjuntoColetas.getColeta()) {
+			System.out.println("----Coleta "+c.getColetaId()+"------");
 			System.out.println(c.getConjuntocusto());
 		}
 

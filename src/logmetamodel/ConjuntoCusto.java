@@ -83,4 +83,6 @@ public interface ConjuntoCusto extends EObject {
 	
 	void setCustosRotas(EList<Float> custos);
 	
+	public void normalizeCustos();
+	
 } // ConjuntoCusto

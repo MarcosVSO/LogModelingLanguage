@@ -2,13 +2,16 @@
  */
 package logmetamodel.impl;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 import logmetamodel.ConjuntoCusto;
 import logmetamodel.LogmetamodelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -260,6 +263,23 @@ public class ConjuntoCustoImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public void setCustosRotas(EList<Float> custos) {
 		this.custosRotas = custos;
+	}
+	
+	@Override
+	public void normalizeCustos() {
+		EList<Float> custosAux = this.getCustosRotas();
+		EList<Float> custosNormalizados = new BasicEList<Float>();
+		Collections.sort(custosAux);
+		float minValue = custosAux.get(0);
+		float maxValue = custosAux.get(custosAux.size()-1);
+		
+		for (Float custo : this.getCustosRotas()) {
+			BigDecimal aux = new BigDecimal((float) (custo - minValue) / (maxValue-minValue));
+			aux = aux.setScale(2,BigDecimal.ROUND_HALF_UP);
+			custosNormalizados.add(aux.floatValue());
+		}
+		
+		this.custosRotas = (custosNormalizados);
 	}
 
 } //ConjuntoCustoImpl

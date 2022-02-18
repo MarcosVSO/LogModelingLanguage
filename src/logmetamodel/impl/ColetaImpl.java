@@ -326,6 +326,7 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 		EList<ConjuntoCusto> listaConjuntoCusto = new BasicEList<ConjuntoCusto>();
 		for(Restricao r : restricoes) {
 			ConjuntoCusto conjuntoCustosCalculados = calculateConjuntoCusto(rotas,r);
+			conjuntoCustosCalculados.normalizeCustos();
 			listaConjuntoCusto.add(conjuntoCustosCalculados);
 		}
 		this.conjuntocusto = listaConjuntoCusto;
@@ -355,11 +356,13 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 	public EList<Float> calculateCustoDistancia(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException{
 		EList<Float> custoDistanciaRotas = new BasicEList<Float>();
 		
-		float minDistance = 1000000;
 		Gson gson = new Gson();
 		var client = HttpClient.newHttpClient();
+		int i=0;
 		
 		for (Rota r : rotas) {
+			i=0;
+			Float[] distancias = new Float[r.getCoordenadas().size()];
 			for (String coord : r.getCoordenadas()) {
 				
 				HttpRequest request = HttpRequest.newBuilder()
@@ -370,13 +373,12 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 				
 				Route rotaAux = gson.fromJson(response.body(),Route.class);
-				//System.out.println(rotaAux.getRoutesDistance());
-				if (Float.parseFloat(rotaAux.getRoutesDistance()) < minDistance) {
-					minDistance = Float.parseFloat(rotaAux.getRoutesDistance());
-				}
+				
+				distancias[i]= Float.valueOf(rotaAux.getRoutesDistance());
+				i++;
 			}
-			custoDistanciaRotas.add(minDistance);
-			minDistance = 1000000;
+			Arrays.sort(distancias);
+			custoDistanciaRotas.add(distancias[distancias.length -1]);
 		}
 		
 		return custoDistanciaRotas;
@@ -384,12 +386,13 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 	
 	public EList<Float> calculateCustoTempo(EList<Rota> rotas, Restricao restricao) throws IOException, InterruptedException{
 		EList<Float> custoTempoRotas = new BasicEList<Float>();
-		float minDuration = 1000000;
 		
 		Gson gson = new Gson();
 		var client = HttpClient.newHttpClient();
-
+		int i=0;
 		for (Rota r : rotas) {
+			i=0;
+			Float[] tempos = new Float[r.getCoordenadas().size()];
 			for (String coord : r.getCoordenadas()) {
 				
 						HttpRequest request = HttpRequest.newBuilder()
@@ -400,12 +403,11 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 				Route rotaAux = gson.fromJson(response.body(),Route.class);
 				//System.out.println(rotaAux.getRoutesDistance());
-				if (Float.parseFloat(rotaAux.getRoutesDuration()) < minDuration) {
-					minDuration = Float.parseFloat(rotaAux.getRoutesDuration());
-				}
+				tempos[i] = Float.valueOf(rotaAux.getRoutesDuration());
+				i++;
 			}
-			custoTempoRotas.add(minDuration);
-			minDuration = 1000000;
+			Arrays.sort(tempos);
+			custoTempoRotas.add((float)tempos[tempos.length -1]);
 		}
 		return custoTempoRotas;
 	} 
