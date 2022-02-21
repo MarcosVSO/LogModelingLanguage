@@ -53,8 +53,7 @@ public class Main {
 		conjuntoColetas.createConjuntoColetas(2);
 		
 		for(Coleta c : conjuntoColetas.getColeta()) {
-			c.setConjuntoCusto(domainSchema.getDataschema().getConjuntorotas().getRota(),
-					domainSchema.getDataschema().getRestricao());
+			c.setConjuntoCusto(rotas.getRota(),listaRestricoes);
 		}
 		
 		for(Coleta c : conjuntoColetas.getColeta()) {

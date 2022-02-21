@@ -3,6 +3,7 @@
 package logmetamodel.impl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -378,7 +379,7 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 				i++;
 			}
 			Arrays.sort(distancias);
-			custoDistanciaRotas.add(distancias[distancias.length -1]);
+			custoDistanciaRotas.add(distancias[0]);
 		}
 		
 		return custoDistanciaRotas;
@@ -407,7 +408,7 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 				i++;
 			}
 			Arrays.sort(tempos);
-			custoTempoRotas.add((float)tempos[tempos.length -1]);
+			custoTempoRotas.add((float)tempos[0]);
 		}
 		return custoTempoRotas;
 	} 
@@ -442,7 +443,7 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 				desvios[i] = somaDistanciais;
 			}
 			Arrays.sort(desvios);
-			custoDesvioRotas.add(desvios[desvios.length -1]);
+			custoDesvioRotas.add(desvios[0]);
 		}
 		return custoDesvioRotas;
 	}
@@ -456,14 +457,14 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 		for (ConjuntoCusto custos : this.conjuntocusto) {
 			utilidadesCalculadas.add((float)0);
 			for (Float c : custos.getCustosRotas()) {
-				System.out.println(c*restricoes.get(i).getPeso());
+				//System.out.println(c*restricoes.get(i).getPeso());
 				utilidadesCalculadas.set(i,utilidadesCalculadas.get(i)+c*restricoes.get(i).getPeso());
 			}
 			i++;
 		}
 		
 		i = 0;
-		for (Float utilidadeCalculada : utilidadesCalculadas) {
+		for (Float utilidadeCalculada : utilidadesNormalizadas(utilidadesCalculadas)) {
 			Utilidade auxUtil = LogmetamodelFactory.eINSTANCE.createUtilidade();
 			auxUtil.setColetaId(this.coletaId);
 			auxUtil.setRotaId(i);
@@ -473,5 +474,26 @@ public class ColetaImpl extends MinimalEObjectImpl.Container implements Coleta {
 		}
 		
 		this.utilidade = utilidades;
+	}
+	
+	public EList<Float> utilidadesNormalizadas(EList<Float> utilidades){
+		EList<Float> utilidadesNormalizadas = new BasicEList<Float>();
+		Float minValue = utilidades.get(0);
+		Float maxValue = utilidades.get(0);
+		
+		for (Float u : utilidades) {
+			minValue = u < minValue ? u : minValue;
+			maxValue = u > maxValue ? u : maxValue;
+		}
+		
+		int i=0;
+		for (Float u : utilidades) {
+			BigDecimal aux = new BigDecimal((float) (u - minValue) / (maxValue-minValue));
+			aux = aux.setScale(2,BigDecimal.ROUND_HALF_UP);
+			utilidadesNormalizadas.add(1-aux.floatValue());
+		}
+		System.out.println(utilidadesNormalizadas);
+		return utilidadesNormalizadas;
+		
 	}
 }  
