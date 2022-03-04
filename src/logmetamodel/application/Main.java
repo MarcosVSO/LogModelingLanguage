@@ -49,8 +49,8 @@ public class Main {
 		dataSchema.setConjuntorotas(rotas);
 		controlSchema.setConjuntocoletas(conjuntoColetas);
 		
-		rotas.generateRoutes(4,2);
-		conjuntoColetas.createConjuntoColetas(2);
+		rotas.generateRoutes(5,5);
+		conjuntoColetas.createConjuntoColetas(20);
 		
 		for(Coleta c : conjuntoColetas.getColeta()) {
 			c.setConjuntoCusto(rotas.getRota(),listaRestricoes);

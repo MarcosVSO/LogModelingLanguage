@@ -274,7 +274,7 @@ public class ConjuntoCustoImpl extends MinimalEObjectImpl.Container implements C
 		float maxValue = custosAux.get(custosAux.size()-1);
 		
 		for (Float custo : this.getCustosRotas()) {
-			BigDecimal aux = new BigDecimal((float) (custo - minValue) / (maxValue-minValue));
+			BigDecimal aux = new BigDecimal((float) (custo - minValue) / (float) (maxValue-minValue));
 			aux = aux.setScale(2,BigDecimal.ROUND_HALF_UP);
 			custosNormalizados.add(aux.floatValue());
 		}
